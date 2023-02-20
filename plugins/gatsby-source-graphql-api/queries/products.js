@@ -1,8 +1,8 @@
 exports.ALL_PRODUCTS_UPDATED = `
   query Products {
-    allProducts(input: { deleted: false }) {
+    allProducts {
       id
-      updated
+      updatedAt
     }
   }
 `;
@@ -10,21 +10,20 @@ exports.ALL_PRODUCTS_UPDATED = `
 exports.PRODUCT_BY_ID = `
   query Product($id: ID!) {
     product(id: $id) {
+      updatedAt
+      createdAt
       id
-      created
-      updated
-      status
-      path
       title
-      sku
+      description
+      price
       images {
-        uid
-        imageType
-        alt
-        caption
-        filename
+        id
+        fileName
         url
-        sortOrder
+        alt
+        imageType
+        createdAt
+        rootDirectory
       }
     }
   }

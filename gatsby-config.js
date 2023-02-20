@@ -5,5 +5,12 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: [],
-}
+  plugins: [
+    {
+      resolve: `gatsby-source-graphql-api`,
+      options: {
+        url: `http://localhost:4000/graphql`,
+      },
+    },
+  ],
+};

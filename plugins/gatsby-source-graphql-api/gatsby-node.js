@@ -1,6 +1,9 @@
 const { createClient } = require('./create-client');
+const { processCategories } = require('./nodes/category-node');
 
 const { processProducts } = require('./nodes/product-node');
+const { ALL_CATEGORIES } = require('./queries/categories');
+const { ALL_PRODUCTS_UPDATED, PRODUCT_BY_ID } = require('./queries/products');
 
 const { PRODUCT_NODE_TYPE, CATEGORY_NODE_TYPE } = require('./types');
 
@@ -90,8 +93,8 @@ exports.sourceNodes = async (
       category,
       createNodeId,
       createContentDigest,
+      createNode,
     });
-    createNode(nodeData);
   });
 
   return;
