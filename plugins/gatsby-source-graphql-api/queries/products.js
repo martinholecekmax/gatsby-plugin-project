@@ -16,6 +16,7 @@ exports.PRODUCT_BY_ID = `
       title
       description
       price
+      path
       images {
         id
         fileName

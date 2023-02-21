@@ -1,0 +1,23 @@
+.container {
+  width: 1500px;
+  margin: 50px auto;
+}
+
+.description {
+  text-align: justify;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-size: 20px;
+  width: 300px;
+}
+
+.content {
+  display: flex;
+  gap: 50px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+}
