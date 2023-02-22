@@ -106,10 +106,8 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     `
     type Category implements Node {
       products: [Product]
-      subcategories: [Category]
     }
     type Product implements Node {
-      groupProducts: [Product]
     }
     `,
     schema.buildObjectType({
@@ -127,61 +125,6 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
               // return ["uncategorized"]
             }
             return source.products.map((product) => {
-              return context.nodeModel.findOne({
-                query: {
-                  filter: {
-                    mongo_id: {
-                      eq: product.id,
-                    },
-                  },
-                },
-                type: 'Product',
-              });
-            });
-          },
-        },
-        subcategories: {
-          type: ['Category'],
-          resolve: async (source, args, context) => {
-            const { subcategories } = source;
-            if (
-              source.subcategories === null ||
-              (Array.isArray(subcategories) && !subcategories.length)
-            ) {
-              return null;
-              // return ["uncategorized"]
-            }
-            return source.subcategories.map((category) => {
-              return context.nodeModel.findOne({
-                query: {
-                  filter: {
-                    mongo_id: {
-                      eq: category.id,
-                    },
-                  },
-                },
-                type: 'Category',
-              });
-            });
-          },
-        },
-      },
-    }),
-    schema.buildObjectType({
-      name: 'Product',
-      fields: {
-        groupProducts: {
-          type: ['Product'],
-          resolve: async (source, args, context) => {
-            const { groupProducts } = source;
-            if (
-              source.groupProducts === null ||
-              (Array.isArray(groupProducts) && !groupProducts.length)
-            ) {
-              return null;
-              // return ["uncategorized"]
-            }
-            return source.groupProducts.map((product) => {
               return context.nodeModel.findOne({
                 query: {
                   filter: {
